@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6ptmspogyg74"]
+
+[ext_resource type="Script" path="res://CelestialBody.gd" id="1_k6uo1"]
+[ext_resource type="Script" path="res://Player.gd" id="1_ukcgq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f3q25"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kmaky"]
+
+[sub_resource type="Environment" id="Environment_7axjq"]
+background_mode = 1
+background_color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3v0ps"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3f3h"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_53si0"]
+material = SubResource("StandardMaterial3D_h3f3h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6hwb"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 16.0
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00161409, 0, -0.00630856)
+
+[node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.616, 0, 77.7615)
+mass = 60.0
+center_of_mass_mode = 1
+gravity_scale = 2.66454e-15
+script = ExtResource("1_ukcgq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(0.44, 0, 0, 0, 0.44, 0, 0, 0, 0.44, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_f3q25")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_kmaky")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+environment = SubResource("Environment_7axjq")
+
+[node name="Sun1" type="RigidBody3D" parent="."]
+mass = 100000.0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_k6uo1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sun1"]
+transform = Transform3D(2.38, 0, 0, 0, 2.38, 0, 0, 0, 2.38, 0, 0, 0)
+shape = SubResource("SphereShape3D_3v0ps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sun1/CollisionShape3D"]
+mesh = SubResource("SphereMesh_53si0")
+surface_material_override/0 = SubResource("StandardMaterial3D_l6hwb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun1"]
+light_energy = 16.0
+omni_range = 64.4734
+
+[node name="Sun2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.808, 0, -225.363)
+mass = 100000.0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_k6uo1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sun2"]
+transform = Transform3D(2.38, 0, 0, 0, 2.38, 0, 0, 0, 2.38, 0, 0, 0)
+shape = SubResource("SphereShape3D_3v0ps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sun2/CollisionShape3D"]
+mesh = SubResource("SphereMesh_53si0")
+surface_material_override/0 = SubResource("StandardMaterial3D_l6hwb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun2"]
+light_energy = 16.0
+omni_range = 64.4734
+
+[node name="Sun3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2297, 0, -202.331)
+mass = 1e+06
+gravity_scale = 2.66454e-15
+script = ExtResource("1_k6uo1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sun3"]
+transform = Transform3D(9.81, 0, 0, 0, 9.81, 0, 0, 0, 9.81, 0, 0, 0)
+shape = SubResource("SphereShape3D_3v0ps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sun3/CollisionShape3D"]
+mesh = SubResource("SphereMesh_53si0")
+surface_material_override/0 = SubResource("StandardMaterial3D_l6hwb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun3"]
+light_energy = 16.0
+omni_range = 64.4734
+
+[node name="Sun4" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 166.843, 0, -78.2356)
+mass = 100000.0
+gravity_scale = 2.66454e-15
+linear_velocity = Vector3(2.08165e-12, 2.08165e-12, 50)
+script = ExtResource("1_k6uo1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sun4"]
+transform = Transform3D(2.38, 0, 0, 0, 2.38, 0, 0, 0, 2.38, 0, 0, 0)
+shape = SubResource("SphereShape3D_3v0ps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sun4/CollisionShape3D"]
+mesh = SubResource("SphereMesh_53si0")
+surface_material_override/0 = SubResource("StandardMaterial3D_l6hwb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun4"]
+light_energy = 16.0
+omni_range = 64.4734
+
+[node name="Sun5" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.6401, 0, -285.026)
+mass = 100000.0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_k6uo1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sun5"]
+transform = Transform3D(2.38, 0, 0, 0, 2.38, 0, 0, 0, 2.38, 0, 0, 0)
+shape = SubResource("SphereShape3D_3v0ps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sun5/CollisionShape3D"]
+mesh = SubResource("SphereMesh_53si0")
+surface_material_override/0 = SubResource("StandardMaterial3D_l6hwb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun5"]
+light_energy = 16.0
+omni_range = 64.4734
